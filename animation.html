@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bouncing Ball Animation</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      overflow: hidden;
+    }
+
+    .ball {
+      width: 50px;
+      height: 50px;
+      background-color: #ff5722;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="ball"></div>
+
+  <script>
+    const ball = document.querySelector('.ball');
+    let posY = 0;
+    let velocity = 2;
+    let gravity = 0.5;
+    let bounce = -0.7;
+
+    function animate() {
+      posY += velocity;
+      velocity += gravity;
+
+      if (posY > window.innerHeight - 50) { // Bounce off the floor
+        posY = window.innerHeight - 50;
+        velocity *= bounce;
+      }
+
+      ball.style.top = posY + 'px';
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
